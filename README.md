@@ -57,4 +57,111 @@ commands:
 Documentation
 -------------
 
-Read the [documentation](https://docs.facefusion.io) for a deep dive.
+# Face Fusion 3.2.0 NSFW disabled Installation
+
+
+
+
+
+## 1. Prepare Your Platform for Windows
+
+
+
+
+
+
+## Git
+
+```bash
+  winget install -e --id Git.Git
+```
+
+## Conda
+
+```bash
+  winget install -e --id Anaconda.Miniconda3 --override "/AddToPath=1"
+```
+    
+## FFmpeg
+
+```bash
+winget install -e --id Gyan.FFmpeg
+```
+
+## 2. Prepare Your Environment
+#### Initialize conda for your terminal:
+
+```bash
+conda init --all
+```
+#### Create the environment:
+
+```bash
+conda create --name facefusion python=3.12 pip=25.0
+```
+#### Activate the environment:
+
+```bash
+conda activate facefusion
+```
+
+## 3. Install Your Accelerator
+## CUDA
+#### Compatible with NVIDIA graphic cards:
+```bash
+ conda install conda-forge::cuda-runtime=12.8.1 conda-forge::cudnn=9.8.0.87
+```
+## TensorRT (Can be ommitted for windows)
+#### Suitable for high performance NVIDIA graphic cards: 
+```bash
+ pip install tensorrt==10.9.0.34 --extra-index-url https://pypi.nvidia.com
+```
+
+)
+
+## OpenVINO
+#### Suitable for Intel Arc graphic cards: 
+```bash
+ conda install conda-forge::openvino=2025.1.0
+```
+
+## 4. Download Your Copy
+
+#### Clone the repository:
+
+```bash
+git clone https://github.com/sourabh2182/facefusion_3.2.0_NSFW_disabled.git
+```
+
+#### Ensure to enter the directory:
+
+```bash
+cd facefusion
+```
+
+## 5. Install The Application
+#### CPU:
+
+```bash
+python install.py --onnxruntime default
+```
+#### CUDA:
+
+```bash
+python install.py --onnxruntime cuda
+```
+
+## 6. Reload Your Environment
+```bash
+conda deactivate
+```
+```bash
+conda activate facefusion
+```
+
+## 7. Done
+#### Finally, run the program:
+
+```bash
+python facefusion.py run --open-browser
+```
